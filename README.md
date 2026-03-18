@@ -4,37 +4,31 @@
 
 ---
 
-## 3步开始
+## 3步开始（不需要任何编程知识）
 
-### 第1步：下载 [Trae](https://www.trae.ai/)
+### 第1步：下载 Trae
 
-官网下载，双击安装。
+打开 [trae.ai](https://www.trae.ai/)，下载 Windows 版，双击安装。
 
-### 第2步：克隆本项目
+### 第2步：打开本项目
 
-打开 Trae → 点击"克隆Git仓库" → 粘贴：
+打开 Trae → 点左上角「文件」→「打开文件夹」→ 选择你下载解压后的这个文件夹。
 
-```
-https://github.com/ilang-ai/trae.git
-```
+**怎么下载这个文件夹？**
 
-或者用命令行：
+点击本页面绿色的 **「Code」** 按钮 → 点 **「Download ZIP」** → 解压到任意位置。
 
-```bash
-git clone https://github.com/ilang-ai/trae.git
-```
-
-然后在 Trae 里打开这个文件夹。
+![download](https://img.shields.io/badge/点绿色Code按钮-Download_ZIP-brightgreen?style=for-the-badge)
 
 ### 第3步：说中文
 
-打开 AI 对话框，直接说：
+在 Trae 右侧的 AI 对话框里，直接说：
 
 ```
 帮我做一个餐厅预约网站
 ```
 
-完事。40个技能自动生效。
+完事。40个技能自动生效。你不需要做任何其他操作。
 
 ---
 
@@ -42,18 +36,41 @@ git clone https://github.com/ilang-ai/trae.git
 
 ```
 你说："帮我做一个餐厅预约网站"
-AI：问你2个简单问题 → 选技术 → 写代码 → 测试 → 部署 → 给你网址
 
-你的投入：1句话
-外包报价：5000-15000元
+AI自动执行：
+  问你2个简单问题
+  → 选技术方案
+  → 写代码
+  → 测试
+  → 部署上线
+  → 给你网址
+
+你的投入：1句话 + 2个回答
+外包报价：5000-15000元，两三周
 ZeroCode：25分钟
 ```
 
 ---
 
-## 40个技能
+## 你不需要
 
-全部自动触发，你不需要激活任何东西。
+- ❌ 不需要懂编程
+- ❌ 不需要懂英文
+- ❌ 不需要苹果电脑
+- ❌ 不需要安装任何其他软件
+- ❌ 不需要做任何配置
+
+## 你需要
+
+- ✅ 一台能上网的电脑
+- ✅ 下载 Trae（免费）
+- ✅ 会打中文字
+
+---
+
+## 40个技能（全部自动触发）
+
+你不需要记住这些，也不需要手动激活。说话就行。
 
 | 分类 | 数量 | 做什么 |
 |------|------|--------|
@@ -70,24 +87,36 @@ ZeroCode：25分钟
 
 ---
 
-## 原理
-
-本项目包含一个 `.trae/rules/project-rules.md` 文件。Trae 打开项目时自动读取这个文件作为 AI 的行为规则。
-
-你不需要做任何配置。打开就用。
-
----
-
 ## 省钱
 
-内置 [I-Lang](https://ilang.ai) 压缩协议，AI 内部思考的 token 消耗降低 60% 以上。自动生效。
+内置 [I-Lang](https://ilang.ai) 压缩协议，AI 内部思考的 token 消耗降低 60% 以上。
+
+你不需要做任何事情，省钱是自动的。
 
 ---
 
-## 也支持
+## 常见问题
 
-- **VS Code** — 安装 [ZeroCode 插件](https://marketplace.visualstudio.com/items?itemName=ILang.zerocode)
-- **Claude Code** — 安装 [AutoCode 插件](https://github.com/ilang-ai/autocode)（英文版，39个技能）
+**下载了 ZIP 解压后打开 Trae，没有反应？**
+> 确保你在 Trae 里「打开文件夹」选的是解压后的那个文件夹（里面应该能看到 README.md 文件），不是 ZIP 文件本身。
+
+**AI 对话框在哪里？**
+> Trae 右侧边栏就是 AI 对话框。如果看不到，点右上角的聊天气泡图标。
+
+**可以用来做什么？**
+> 网站、小程序、工具、机器人、后台管理系统、数据面板——任何你能用中文描述出来的软件产品。
+
+**收费吗？**
+> ZeroCode 免费，Trae 免费。AI 模型的 token 费用由 Trae 内置额度覆盖。
+
+---
+
+## 也支持其他工具
+
+| 工具 | 安装方式 |
+|------|---------|
+| VS Code | 安装 [ZeroCode 插件](https://marketplace.visualstudio.com/items?itemName=ILang.zerocode) |
+| Claude Code | 安装 [AutoCode](https://github.com/ilang-ai/autocode)（英文版） |
 
 ---
 
@@ -101,4 +130,4 @@ ZeroCode：25分钟
 
 MIT · 免费 · 永久
 
-I-Lang Research · Eastsoft Inc. · Canada · © 2026
+I-Lang Research · Eastsoft Inc. · © 2026
