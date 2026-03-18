@@ -4,31 +4,23 @@
 
 ---
 
-## 3步开始（不需要任何编程知识）
+## 2步开始
 
 ### 第1步：下载 Trae
 
-打开 [trae.ai](https://www.trae.ai/)，下载 Windows 版，双击安装。
+打开 [trae.ai](https://www.trae.ai/)，下载安装。
 
-### 第2步：打开本项目
+### 第2步：复制这句话，粘贴到 Trae 的 AI 对话框
 
-打开 Trae → 点左上角「文件」→「打开文件夹」→ 选择你下载解压后的这个文件夹。
+```
+帮我在当前目录创建 .trae/rules 文件夹，然后从这个地址下载文件保存到 .trae/rules/project-rules.md ：https://raw.githubusercontent.com/ilang-ai/trae/main/.trae/rules/project-rules.md
+```
 
-**怎么下载这个文件夹？**
-
-点击本页面绿色的 **「Code」** 按钮 → 点 **「Download ZIP」** → 解压到任意位置。
-
-![download](https://img.shields.io/badge/点绿色Code按钮-Download_ZIP-brightgreen?style=for-the-badge)
-
-### 第3步：说中文
-
-在 Trae 右侧的 AI 对话框里，直接说：
+**装好了。** 现在你可以直接说中文了，比如：
 
 ```
 帮我做一个餐厅预约网站
 ```
-
-完事。40个技能自动生效。你不需要做任何其他操作。
 
 ---
 
@@ -95,10 +87,16 @@ ZeroCode：25分钟
 
 ---
 
+## 更新
+
+以后有新版本时，再粘贴一次那句话就行，自动覆盖。
+
+---
+
 ## 常见问题
 
-**下载了 ZIP 解压后打开 Trae，没有反应？**
-> 确保你在 Trae 里「打开文件夹」选的是解压后的那个文件夹（里面应该能看到 README.md 文件），不是 ZIP 文件本身。
+**粘贴那句话后 Trae 没反应？**
+> 确保你已经在 Trae 里打开了一个文件夹（随便哪个都行）。没打开文件夹的话 AI 不知道往哪里放文件。
 
 **AI 对话框在哪里？**
 > Trae 右侧边栏就是 AI 对话框。如果看不到，点右上角的聊天气泡图标。
