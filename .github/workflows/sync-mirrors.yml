@@ -7,22 +7,28 @@ on:
     tags: ['v*']
 
 jobs:
-  sync:
+  gitee:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Push to Gitee
+        continue-on-error: true
         run: |
-          git remote add gitee https://${{ secrets.GITEE_USER }}:${{ secrets.GITEE_TOKEN }}@gitee.com/palmmedia/trae.git || true
+          git remote add gitee https://${{ secrets.GITEE_USER }}:${{ secrets.GITEE_TOKEN }}@gitee.com/palmmedia/trae.git
           git push gitee main --force
           git push gitee --tags --force
 
+  gitcode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Push to GitCode
+        continue-on-error: true
         run: |
-          git remote add gitcode https://${{ secrets.GITCODE_USER }}:${{ secrets.GITCODE_TOKEN }}@gitcode.com/palmmedia/trae.git || true
+          git remote add gitcode https://${{ secrets.GITCODE_USER }}:${{ secrets.GITCODE_TOKEN }}@gitcode.com/palmmedia/trae.git
           git push gitcode main --force
           git push gitcode --tags --force
