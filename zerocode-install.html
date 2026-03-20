@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZeroCode 零代码 — 说中文，出产品</title>
+<meta name="description" content="ZeroCode 零代码AI编程。40个自动化技能，Trae打开即用。不需要懂编程，不需要懂英文，说中文就能做产品。">
+<meta name="keywords" content="ZeroCode,零代码,Trae,AI编程,I-Lang,爱语言,中文编程,AI开发,零基础编程">
+<link rel="icon" href="https://gitee.com/palmmedia/trae/raw/main/logo.png" type="image/png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#0a0e17;--card:#131b2e;--border:#1e293b;
+--green:#22c55e;--blue:#3b82f6;--yellow:#eab308;
+--gray:#64748b;--text:#e2e8f0;--white:#f8fafc;
+}
+body{background:var(--bg);color:var(--text);font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;min-height:100vh;line-height:1.8}
+.c{max-width:720px;margin:0 auto;padding:40px 20px}
+
+/* Header */
+.hd{text-align:center;margin-bottom:48px}
+.hd img{width:80px;height:80px;border-radius:16px;margin-bottom:16px}
+.hd h1{font-size:32px;font-weight:900;background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:6px}
+.hd .sub{font-size:18px;color:var(--white);font-weight:700;margin-bottom:4px}
+.hd .desc{font-size:14px;color:var(--gray)}
+
+/* Progress */
+.progress{display:flex;gap:4px;margin-bottom:48px}
+.progress .seg{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.5s}
+.progress .seg.done{background:var(--green)}
+.progress .seg.active{background:var(--blue);animation:pulse 1.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+
+/* Step */
+.step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;margin-bottom:32px;display:none}
+.step.show{display:block;animation:fadeIn 0.5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);border-radius:20px;padding:4px 14px 4px 4px;font-size:13px;color:var(--green);margin-bottom:16px}
+.badge .num{width:24px;height:24px;border-radius:50%;background:var(--green);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px}
+
+.step h2{font-size:22px;font-weight:900;color:var(--white);margin-bottom:16px}
+.step p{color:var(--gray);margin-bottom:16px;font-size:15px}
+.step p b{color:var(--white)}
+
+.substep{background:rgba(255,255,255,0.03);border-radius:10px;padding:16px 20px;margin-bottom:12px;border-left:3px solid var(--border)}
+.substep.hl{border-left-color:var(--green)}
+.substep-num{font-size:12px;color:var(--blue);font-weight:700;margin-bottom:4px}
+.substep p{margin-bottom:0}
+
+.info{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:14px}
+.info b{color:var(--blue)}
+.warn{background:rgba(234,179,8,0.08);border:1px solid rgba(234,179,8,0.2);border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:14px}
+.warn b{color:var(--yellow)}
+
+/* Terminal */
+.term{background:#111827;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:16px 0}
+.term-bar{background:#1a2235;padding:8px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--border)}
+.dot{width:10px;height:10px;border-radius:50%}.dot.r{background:#ef4444}.dot.y{background:#eab308}.dot.g{background:#22c55e}
+.term-title{flex:1;text-align:center;font-family:monospace;font-size:11px;color:var(--gray)}
+.term-body{padding:16px;font-family:'SF Mono',Consolas,monospace;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre-wrap;word-break:break-all}
+.term-body .prompt{color:var(--green)}
+.term-body .cmd{color:var(--white)}
+
+.copy-btn{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--border);color:var(--gray);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;transition:all 0.2s;margin-top:8px}
+.copy-btn:hover{color:var(--white);border-color:var(--gray)}
+.copy-btn.copied{color:var(--green);border-color:var(--green)}
+
+/* Nav */
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px}
+.btn{padding:12px 28px;border-radius:8px;border:none;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s}
+.btn-next{background:var(--green);color:var(--bg)}
+.btn-next:hover{background:#16a34a;transform:translateY(-1px);box-shadow:0 4px 16px rgba(34,197,94,0.3)}
+.btn-prev{background:transparent;color:var(--gray);border:1px solid var(--border)}
+.btn-prev:hover{color:var(--white);border-color:var(--gray)}
+
+.link-btn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:white;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;transition:all 0.2s;margin:8px 4px}
+.link-btn:hover{background:#2563eb;transform:translateY(-1px)}
+.link-btn.green{background:var(--green)}
+.link-btn.green:hover{background:#16a34a}
+
+/* Skills table */
+.skill-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.skill-table th{text-align:left;padding:8px 12px;background:rgba(34,197,94,0.1);color:var(--green);border-bottom:1px solid var(--border)}
+.skill-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--gray)}
+.skill-table td:first-child{color:var(--white);font-weight:600}
+
+/* Final */
+.final{text-align:center;padding:40px 0}
+.final h2{font-size:32px;font-weight:900;color:var(--green);margin-bottom:12px}
+.final p{color:var(--gray);font-size:16px;margin-bottom:20px}
+.try-box{background:#111827;border:1px solid var(--border);border-radius:10px;padding:20px;display:inline-block;font-size:15px;color:var(--white);margin:8px 0;cursor:pointer;transition:border-color 0.2s}
+.try-box:hover{border-color:var(--green)}
+
+/* Future */
+.future{background:rgba(59,130,246,0.05);border:1px solid rgba(59,130,246,0.15);border-radius:12px;padding:20px;margin:16px 0}
+.future h3{color:var(--blue);font-size:16px;margin-bottom:8px}
+.future p{color:var(--gray);font-size:14px;margin-bottom:0}
+
+/* Footer */
+.ft{text-align:center;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);color:var(--gray);font-size:13px;line-height:2}
+.ft a{color:var(--blue);text-decoration:none}
+
+@media(max-width:600px){
+.c{padding:20px 14px}
+.hd h1{font-size:24px}
+.hd img{width:64px;height:64px}
+.step{padding:20px}
+.term-body{font-size:11px;padding:12px}
+}
+</style>
+</head>
+<body>
+<div class="c">
+
+<div class="hd">
+  <img src="https://gitee.com/palmmedia/trae/raw/main/logo.png" alt="ZeroCode">
+  <h1>ZeroCode 零代码</h1>
+  <div class="sub">说中文，出产品。</div>
+  <div class="desc">40个自动化AI编程技能 · 不懂代码也能做产品 · 免费</div>
+</div>
+
+<div class="progress" id="progressBar">
+  <div class="seg active"></div>
+  <div class="seg"></div>
+  <div class="seg"></div>
+  <div class="seg"></div>
+</div>
+
+<!-- STEP 1 -->
+<div class="step show" id="step1">
+  <div class="badge"><div class="num">1</div> 第一步</div>
+  <h2>下载 Trae</h2>
+  <p>Trae 是字节跳动做的<b>免费AI编程工具</b>。你不需要懂编程，它就是你的"AI程序员"。</p>
+
+  <div class="info"><b>💰 完全免费</b>，内置AI模型（DeepSeek/豆包），不花一分钱。</div>
+
+  <div class="substep hl">
+    <div class="substep-num">① 下载安装</div>
+    <p>点击下面的按钮，下载 Trae，双击安装。支持 Windows / Mac。</p>
+  </div>
+  <a href="https://www.trae.ai/" target="_blank" class="link-btn green">👉 下载 Trae（免费）</a>
+
+  <div class="substep">
+    <div class="substep-num">② 打开 Trae</div>
+    <p>安装完打开，它会让你登录。<b>用手机号或邮箱注册就行。</b></p>
+  </div>
+
+  <div class="substep">
+    <div class="substep-num">③ 打开一个文件夹</div>
+    <p>点 <b>「打开文件夹」</b>，选一个空文件夹（随便在桌面新建一个就行）。<br>
+    <b>⚠️ 这一步必须做</b>，不打开文件夹AI不知道往哪里放文件。</p>
+  </div>
+
+  <div class="nav">
+    <div></div>
+    <button class="btn btn-next" onclick="goStep(2)">下一步 →</button>
+  </div>
+</div>
+
+<!-- STEP 2 -->
+<div class="step" id="step2">
+  <div class="badge"><div class="num">2</div> 第二步</div>
+  <h2>安装 ZeroCode（一句话）</h2>
+  <p>在 Trae 右侧的<b>AI对话框</b>里，<b>粘贴下面这句话</b>，按回车：</p>
+
+  <div class="term">
+    <div class="term-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="term-title">Trae AI 对话框</div></div>
+    <div class="term-body"><span class="cmd">帮我在当前目录创建 .trae/rules 文件夹，然后从这个地址下载文件保存到 .trae/rules/project-rules.md ：https://gitee.com/palmmedia/trae/raw/main/.trae/rules/project-rules.md</span></div>
+  </div>
+  <button class="copy-btn" onclick="copyCmd('帮我在当前目录创建 .trae/rules 文件夹，然后从这个地址下载文件保存到 .trae/rules/project-rules.md ：https://gitee.com/palmmedia/trae/raw/main/.trae/rules/project-rules.md', this)">📋 复制这句话</button>
+
+  <div class="warn"><b>⚠️ AI对话框在哪？</b> Trae右侧边栏就是。如果看不到，点右上角的聊天气泡图标。</div>
+
+  <p>等AI回复<b>"已完成"</b>或<b>"文件已创建"</b>，就装好了。</p>
+
+  <div class="info"><b>✅ 就这一步。</b>不需要装任何其他东西，不需要配置任何东西。</div>
+
+  <div class="nav">
+    <button class="btn btn-prev" onclick="goStep(1)">← 上一步</button>
+    <button class="btn btn-next" onclick="goStep(3)">下一步 →</button>
+  </div>
+</div>
+
+<!-- STEP 3 -->
+<div class="step" id="step3">
+  <div class="badge"><div class="num">3</div> 第三步</div>
+  <h2>开始做产品！</h2>
+
+  <div class="final">
+    <h2>✨ 装好了</h2>
+    <p>40个AI编程技能已激活。<br>现在直接用中文说话。</p>
+
+    <div class="try-box" onclick="copyCmd('帮我做一个餐厅预约网站', this)">帮我做一个餐厅预约网站</div>
+    <p style="font-size:13px;margin-top:8px;color:var(--gray);">↑ 点击复制，粘贴到Trae对话框试试</p>
+
+    <div style="margin-top:24px;">
+      <p style="color:var(--gray);font-size:14px;margin-bottom:12px;">更多你可以说的：</p>
+      <div class="try-box" onclick="copyCmd('帮我做一个个人博客', this)" style="font-size:13px;margin:4px;">帮我做一个个人博客</div>
+      <div class="try-box" onclick="copyCmd('帮我做一个记账工具', this)" style="font-size:13px;margin:4px;">帮我做一个记账工具</div>
+      <div class="try-box" onclick="copyCmd('帮我做一个客户管理系统', this)" style="font-size:13px;margin:4px;">帮我做一个客户管理系统</div>
+      <div class="try-box" onclick="copyCmd('帮我做一个电商网站', this)" style="font-size:13px;margin:4px;">帮我做一个电商网站</div>
+    </div>
+  </div>
+
+  <div class="info"><b>💡 小技巧：</b>出了问题直接说"报错了"或"白屏了"，AI会自动帮你修。不用截图，不用复制错误日志。</div>
+
+  <div class="nav">
+    <button class="btn btn-prev" onclick="goStep(2)">← 上一步</button>
+    <button class="btn btn-next" onclick="goStep(4)">了解更多 →</button>
+  </div>
+</div>
+
+<!-- STEP 4 -->
+<div class="step" id="step4">
+  <div class="badge"><div class="num">4</div> 了解更多</div>
+  <h2>ZeroCode 能做什么</h2>
+
+  <p><b>你说一句话，AI自动完成所有步骤：</b></p>
+  <div class="term">
+    <div class="term-bar"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div><div class="term-title">工作流程</div></div>
+    <div class="term-body">你说："帮我做一个餐厅预约网站"
+
+AI自动执行：
+  问你1-2个简单问题
+  → 选技术方案
+  → 写代码
+  → 测试
+  → 部署上线
+  → 给你网址
+
+你的投入：1句话 + 1-2个回答
+外包报价：5000-15000元，两三周
+ZeroCode：25分钟</div>
+  </div>
+
+  <p style="margin-top:24px;"><b>40个自动技能（全部自动触发，你不用管）：</b></p>
+  <table class="skill-table">
+    <tr><th>分类</th><th>做什么</th></tr>
+    <tr><td>🎯 理解意图</td><td>听懂你要什么，自动分类任务</td></tr>
+    <tr><td>📋 规划任务</td><td>大任务拆成小步骤，预估时间</td></tr>
+    <tr><td>💻 写代码</td><td>搭框架、做功能、做界面</td></tr>
+    <tr><td>🛡️ 质量把关</td><td>自动检查安全、性能、兼容性</td></tr>
+    <tr><td>🔧 修Bug</td><td>三步法：观察→推理→修复</td></tr>
+    <tr><td>💾 保存复盘</td><td>每次保存从头审阅全部代码</td></tr>
+    <tr><td>🌍 部署上线</td><td>本地运行或全球部署</td></tr>
+    <tr><td>📊 进度汇报</td><td>实时进度、效率对比</td></tr>
+    <tr><td>🧠 学习记忆</td><td>越用越快、越懂你</td></tr>
+    <tr><td>💰 省钱引擎</td><td>I-Lang协议压缩，省60%+ token</td></tr>
+  </table>
+
+  <div class="future">
+    <h3>🔮 即将支持：Trae 智能体市场</h3>
+    <p>Trae正在开放智能体市场。届时你可以直接在Trae里搜索 <b>@ZeroCode</b>，一键启用，不需要粘贴任何东西。<br>目前可以手动创建智能体：设置 → 智能体 → 创建 → 粘贴提示词。详见 <a href="https://gitee.com/palmmedia/trae" target="_blank" style="color:var(--blue)">Gitee仓库</a>。</p>
+  </div>
+
+  <p style="margin-top:24px;"><b>也支持其他工具：</b></p>
+  <div class="substep">
+    <div class="substep-num">VS Code</div>
+    <p>安装 <a href="https://marketplace.visualstudio.com/items?itemName=ILang.zerocode" target="_blank" style="color:var(--blue)">ZeroCode 插件</a></p>
+  </div>
+  <div class="substep">
+    <div class="substep-num">Claude Code（英文版）</div>
+    <p>安装 <a href="https://github.com/ilang-ai/autocode" target="_blank" style="color:var(--blue)">AutoCode</a>（39个英文技能）</p>
+  </div>
+
+  <div class="info"><b>💡 更新方法：</b>以后有新版本，重新粘贴第2步那句话就行，自动覆盖。</div>
+
+  <div class="nav">
+    <button class="btn btn-prev" onclick="goStep(3)">← 上一步</button>
+    <a href="https://gitee.com/palmmedia/trae" target="_blank" class="btn btn-next" style="text-decoration:none;color:var(--bg);">去 Gitee 给个星星 ⭐</a>
+  </div>
+</div>
+
+<div class="ft">
+  <a href="https://gitee.com/palmmedia/trae" target="_blank">Gitee（主仓库）</a> · 
+  <a href="https://gitcode.com/palmmedia/trae" target="_blank">GitCode</a> · 
+  <a href="https://ilang.cn" target="_blank">ilang.cn</a> · 
+  <a href="https://ilang.ai" target="_blank">ilang.ai</a><br>
+  MIT · 免费 · 永久 · I-Lang Research · 掌媒科技 · © 2026<br>
+  <span style="font-size:11px;">协议：<a href="https://ilang.ai" target="_blank">I-Lang v2.0</a> · 英文版：<a href="https://github.com/ilang-ai/autocode" target="_blank">AutoCode</a></span>
+</div>
+
+</div>
+
+<script>
+let cur=1;
+function goStep(n){
+  document.getElementById('step'+cur).classList.remove('show');
+  document.getElementById('step'+n).classList.add('show');
+  cur=n;
+  document.querySelectorAll('.progress .seg').forEach((s,i)=>{
+    s.classList.remove('done','active');
+    if(i<cur-1)s.classList.add('done');
+    if(i===cur-1)s.classList.add('active');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function copyCmd(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const o=btn.textContent;
+    btn.textContent='✅ 已复制';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent=o;btn.classList.remove('copied');},2000);
+  });
+}
+</script>
+</body>
+</html>
