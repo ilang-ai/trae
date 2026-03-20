@@ -1,4 +1,4 @@
-name: Sync to Gitee
+name: Sync to Gitee + GitCode
 
 on:
   push:
@@ -20,3 +20,9 @@ jobs:
           git remote add gitee https://${{ secrets.GITEE_USER }}:${{ secrets.GITEE_TOKEN }}@gitee.com/palmmedia/trae.git || true
           git push gitee main --force
           git push gitee --tags --force
+
+      - name: Push to GitCode
+        run: |
+          git remote add gitcode https://${{ secrets.GITCODE_USER }}:${{ secrets.GITCODE_TOKEN }}@gitcode.com/palmmedia/trae.git || true
+          git push gitcode main --force
+          git push gitcode --tags --force
