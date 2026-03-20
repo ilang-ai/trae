@@ -3,7 +3,6 @@ name: Sync to Gitee + GitCode
 on:
   push:
     branches: [main]
-  create:
     tags: ['v*']
 
 jobs:
@@ -19,6 +18,35 @@ jobs:
           git remote add gitee https://${{ secrets.GITEE_USER }}:${{ secrets.GITEE_TOKEN }}@gitee.com/palmmedia/trae.git
           git push gitee main --force
           git push gitee --tags --force
+      - name: Create Gitee Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        continue-on-error: true
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          VERSION: ${{ github.ref_name }}
+        run: |
+          python3 << 'PYEOF'
+          import json, os, subprocess
+          token = os.environ["GITEE_TOKEN"]
+          version = os.environ["VERSION"]
+          # Delete old release if exists
+          old = subprocess.run(["curl", "-s", f"https://gitee.com/api/v5/repos/palmmedia/trae/releases/tags/{version}?access_token={token}"], capture_output=True, text=True)
+          try:
+              old_id = json.loads(old.stdout).get("id")
+              if old_id:
+                  subprocess.run(["curl", "-s", "-X", "DELETE", f"https://gitee.com/api/v5/repos/palmmedia/trae/releases/{old_id}?access_token={token}"])
+          except: pass
+          # Create release
+          payload = json.dumps({
+              "access_token": token,
+              "tag_name": version,
+              "name": f"ZeroCode {version}",
+              "body": f"ZeroCode {version}\n\n40个I-Lang自动化AI编程技能。说中文，出产品。\n\n安装：打开Trae，粘贴一句话即可。详见README。\n\nhttps://ilang.cn",
+              "target_commitish": "main"
+          })
+          r = subprocess.run(["curl", "-s", "-X", "POST", "https://gitee.com/api/v5/repos/palmmedia/trae/releases", "-H", "Content-Type: application/json", "-d", payload], capture_output=True, text=True)
+          print("Gitee Release:", r.stdout[:200])
+          PYEOF
 
   gitcode:
     runs-on: ubuntu-latest

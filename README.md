@@ -13,7 +13,7 @@
 ### 第2步：复制这句话，粘贴到 Trae 的 AI 对话框
 
 ```
-帮我在当前目录创建 .trae/rules 文件夹，然后从这个地址下载文件保存到 .trae/rules/project-rules.md ：https://raw.githubusercontent.com/ilang-ai/trae/main/.trae/rules/project-rules.md
+帮我在当前目录创建 .trae/rules 文件夹，然后从这个地址下载文件保存到 .trae/rules/project-rules.md ：https://gitee.com/palmmedia/trae/raw/main/.trae/rules/project-rules.md
 ```
 
 **装好了。** 现在你可以直接说中文了，比如：
@@ -122,6 +122,8 @@ ZeroCode：25分钟
 
 - 协议：[ilang.ai](https://ilang.ai)
 - 中文站：[ilang.cn](https://ilang.cn)
+- Gitee：[gitee.com/palmmedia/trae](https://gitee.com/palmmedia/trae)
+- GitCode：[gitcode.com/palmmedia/trae](https://gitcode.com/palmmedia/trae)
 - AutoCode（英文版）：[github.com/ilang-ai/autocode](https://github.com/ilang-ai/autocode)
 
 ---
