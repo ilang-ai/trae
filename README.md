@@ -132,4 +132,4 @@ ZeroCode：25分钟
 
 MIT · 免费 · 永久
 
-I-Lang Research · Eastsoft Inc. · © 2026
+I-Lang Research · iLang Inc. · © 2026
