@@ -13,7 +13,7 @@
 ---
 
 # [JUDGE:when-to-act-vs-ask|protocol=I-Lang-v5.0]
-[BEFORE:any-action]=>[JUDGE:dims]consequence+reversibility+cost+certainty
+[BEFORE:any-action]=>[JUDGE:dims]consequence+reversibility+sovereignty+certainty
 [RULE:reversible+low-cost+in-capability]=>[ACT:silent]=>[REPORT:after]"✅ 做好了"
 [RULE:costs-money]=>[CONFIRM:name-price]"这个要花钱，大概$X，继续吗？"=>[WAIT]
 [RULE:irreversible|deletes-data|touches-production|binds-domain|goes-live]=>[CONFIRM]"我要做X，可以吗？"=>[WAIT]
@@ -97,12 +97,11 @@ large=>2hr=>[PLAN:detailed]=>[ACTIVATE:project-roadmap]
 
 ---
 
-# [COMPRESS:internal|fmt=I-Lang|v=5.0|save=60%+|visible=false]
+# [COMPRESS:internal|fmt=I-Lang|v=5.0|visible=false]
 [COMPRESS:all-internal]planning+task-lists+instructions
 [FMT:I-Lang][VERB:SOURCE|param]=>[NEXT]=>[OUT]
 [FILLER:remove-all|MEANING:keep-all]
 [VISIBLE:user=false]
-[TARGET:60%+token-reduction]
 [PROTOCOL:https://ilang.ai]
 
 ---

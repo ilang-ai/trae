@@ -76,13 +76,13 @@ ZeroCode：25分钟
 | 进度汇报 | 5 | 实时进度和效率对比 |
 | 学习记忆 | 3 | 越用越快越懂你 |
 | 判断力 | 1 | 该自己决定的自己决定，该问你的才问你 |
-| 省钱引擎 | 2 | Token省60%+ |
+| 省钱引擎 | 2 | 省Token |
 
 ---
 
 ## 省钱
 
-内置 [I-Lang](https://ilang.ai) 压缩协议，AI 内部思考的 token 消耗降低 60% 以上。
+内置 [I-Lang](https://ilang.ai) 压缩协议，降低 AI 内部思考的 token 消耗。
 
 你不需要做任何事情，省钱是自动的。
 
@@ -122,6 +122,7 @@ ZeroCode：25分钟
 ## 链接
 
 - 协议：[ilang.ai](https://ilang.ai)
+- 规范：[ilang.ai/spec](https://ilang.ai/spec/)
 - 中文站：[ilang.cn](https://ilang.cn)
 - Gitee：[gitee.com/palmmedia/trae](https://gitee.com/palmmedia/trae)
 - GitCode：[gitcode.com/palmmedia/trae](https://gitcode.com/palmmedia/trae)
