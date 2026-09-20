@@ -1,5 +1,7 @@
 # ZeroCode — 零代码AI编程
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22865151.svg)](https://doi.org/10.5281/zenodo.22865151)
+
 ### 说中文，出产品。
 
 ---
@@ -133,3 +135,9 @@ ZeroCode：25分钟
 MIT · 免费 · 永久
 
 I-Lang Research · iLang Inc. · © 2026
+
+---
+
+## 引用
+
+见 [CITATION.cff](CITATION.cff)。每次发版 Zenodo 自动存档，概念 DOI（全版本）：[10.5281/zenodo.22865151](https://doi.org/10.5281/zenodo.22865151)。
