@@ -1,0 +1,37 @@
+{
+  "title": "ZeroCode: Chinese-language AI coding skills for the Trae IDE",
+  "description": "<p>ZeroCode is a rule pack for the Trae IDE aimed at people who write no code and read no English. The user states a goal in Chinese; the agent asks a couple of questions, picks a stack, writes the code, tests it, deploys it and returns the address. Installation is a single instruction pasted into the Trae chat box, with no configuration files to edit by hand.</p>",
+  "version": "2.0.3",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Zhu, Long Quan",
+      "orcid": "0009-0004-4540-8082",
+      "affiliation": "iLang Inc."
+    }
+  ],
+  "keywords": [
+    "Trae",
+    "AI coding",
+    "Chinese",
+    "no-code",
+    "agent rules",
+    "automation"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ilang-ai/trae",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://ilang.ai/spec/",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-technicalnote",
+      "scheme": "url"
+    }
+  ]
+}
