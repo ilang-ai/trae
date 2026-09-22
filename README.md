@@ -84,7 +84,7 @@ ZeroCode：25分钟
 
 ## 省钱
 
-内置 [I-Lang](https://ilang.ai) 压缩协议，降低 AI 内部思考的 token 消耗。
+内置 [iLang](https://ilang.ai) 压缩协议，降低 AI 内部思考的 token 消耗。
 
 你不需要做任何事情，省钱是自动的。
 
@@ -134,7 +134,7 @@ ZeroCode：25分钟
 
 MIT · 免费 · 永久
 
-I-Lang Research · iLang Inc. · © 2026
+iLang Research · iLang Inc. · © 2026
 
 ---
 
